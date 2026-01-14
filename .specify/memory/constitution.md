@@ -1,50 +1,95 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+==================
+Version change: N/A (initial) → 1.0.0
+Modified principles: N/A (initial creation)
+Added sections:
+  - Core Principles (3 principles: Code Quality, UX Consistency, Performance)
+  - Quality Gates
+  - Development Workflow
+  - Governance
+Removed sections: N/A
+Templates requiring updates:
+  - .specify/templates/plan-template.md: ✅ Compatible (Constitution Check section exists)
+  - .specify/templates/spec-template.md: ✅ Compatible (Success Criteria includes performance)
+  - .specify/templates/tasks-template.md: ✅ Compatible (supports quality checkpoints)
+Follow-up TODOs: None
+-->
+
+# Counter App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Code Quality
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+All code contributions MUST adhere to strict quality standards to ensure maintainability and reliability.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+- **Readability**: Code MUST be self-documenting with clear naming conventions; comments are reserved for explaining "why," not "what"
+- **Single Responsibility**: Each function, class, or module MUST have one clearly defined purpose
+- **Type Safety**: All code MUST use proper type annotations appropriate to the language (Swift types for iOS)
+- **Error Handling**: All error paths MUST be explicitly handled; silent failures are prohibited
+- **Testing**: All business logic MUST have corresponding unit tests; integration tests required for user-facing workflows
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: A counter app relies on precise state management. Poor code quality leads to counting errors that destroy user trust.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. User Experience Consistency
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+The user interface and interaction patterns MUST provide a predictable, intuitive experience.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- **Immediate Feedback**: All user actions (button presses, volume rocker inputs) MUST produce visible feedback within 100ms
+- **State Visibility**: Current count MUST always be clearly visible; state changes MUST be animated to show causality
+- **Gesture Predictability**: Identical gestures MUST always produce identical outcomes; no context-dependent behavior changes
+- **Accessibility**: All UI elements MUST support VoiceOver/accessibility features; count MUST be announced on change
+- **Offline-First**: All core functionality MUST work without network connectivity
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rationale**: Users depend on the counter in physical contexts (gyms, inventory, tally situations) where cognitive load must be minimal.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### III. Performance Requirements
+
+The app MUST meet strict performance standards to ensure reliability during active use.
+
+- **Response Time**: Volume button events MUST be processed and UI updated within 50ms
+- **Battery Efficiency**: Background volume monitoring MUST NOT consume more than 1% battery per hour of active use
+- **Memory Footprint**: App MUST NOT exceed 50MB memory during normal operation
+- **Startup Time**: App MUST be fully interactive within 500ms of launch
+- **State Persistence**: Count state MUST be persisted immediately; no data loss on app termination or crash
+
+**Rationale**: A slow or unresponsive counter defeats its purpose. Users in counting scenarios cannot wait for laggy responses.
+
+## Quality Gates
+
+All code changes MUST pass the following gates before merge:
+
+| Gate | Requirement | Enforcement |
+|------|-------------|-------------|
+| Build | Zero warnings, zero errors | CI automated |
+| Tests | 100% pass rate, no skipped tests | CI automated |
+| Performance | Response time benchmarks pass | CI automated |
+| Accessibility | VoiceOver audit passes | Manual review |
+| Code Review | At least one approval required | GitHub PR rules |
+
+## Development Workflow
+
+### Code Review Requirements
+
+- All changes MUST be submitted via pull request
+- PRs MUST include description of changes and testing performed
+- Performance-sensitive changes MUST include benchmark results
+- UI changes MUST include screenshots or screen recordings
+
+### Testing Protocol
+
+- Unit tests MUST be written before or alongside implementation
+- Integration tests MUST cover all user stories in the specification
+- Performance tests MUST validate compliance with Principle III metrics
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution represents the non-negotiable standards for the Counter app project.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- **Supremacy**: This constitution supersedes all other development practices and preferences
+- **Amendment Process**: Changes require documented rationale, team review, and explicit approval
+- **Compliance**: All pull requests and code reviews MUST verify adherence to these principles
+- **Exceptions**: Any deviation MUST be documented in a Complexity Tracking table with justification
+
+**Version**: 1.0.0 | **Ratified**: 2026-01-14 | **Last Amended**: 2026-01-14
