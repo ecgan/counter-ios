@@ -1,18 +1,17 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: N/A (initial) → 1.0.0
-Modified principles: N/A (initial creation)
-Added sections:
-  - Core Principles (3 principles: Code Quality, UX Consistency, Performance)
-  - Quality Gates
-  - Development Workflow
-  - Governance
-Removed sections: N/A
+Version change: 1.0.0 → 1.1.0
+Modified principles:
+  - Code Quality: Removed mandatory testing requirement
+  - Quality Gates: Removed automated test gate
+  - Development Workflow: Testing made optional, manual testing preferred
+Added sections: None
+Removed sections: None
 Templates requiring updates:
-  - .specify/templates/plan-template.md: ✅ Compatible (Constitution Check section exists)
-  - .specify/templates/spec-template.md: ✅ Compatible (Success Criteria includes performance)
-  - .specify/templates/tasks-template.md: ✅ Compatible (supports quality checkpoints)
+  - .specify/templates/plan-template.md: ✅ Compatible
+  - .specify/templates/spec-template.md: ✅ Compatible
+  - .specify/templates/tasks-template.md: ✅ Compatible (tests already marked optional)
 Follow-up TODOs: None
 -->
 
@@ -28,7 +27,6 @@ All code contributions MUST adhere to strict quality standards to ensure maintai
 - **Single Responsibility**: Each function, class, or module MUST have one clearly defined purpose
 - **Type Safety**: All code MUST use proper type annotations appropriate to the language (Swift types for iOS)
 - **Error Handling**: All error paths MUST be explicitly handled; silent failures are prohibited
-- **Testing**: All business logic MUST have corresponding unit tests; integration tests required for user-facing workflows
 
 **Rationale**: A counter app relies on precise state management. Poor code quality leads to counting errors that destroy user trust.
 
@@ -63,8 +61,7 @@ All code changes MUST pass the following gates before merge:
 | Gate | Requirement | Enforcement |
 |------|-------------|-------------|
 | Build | Zero warnings, zero errors | CI automated |
-| Tests | 100% pass rate, no skipped tests | CI automated |
-| Performance | Response time benchmarks pass | CI automated |
+| Performance | Response time benchmarks pass | Manual verification |
 | Accessibility | VoiceOver audit passes | Manual review |
 | Code Review | At least one approval required | GitHub PR rules |
 
@@ -79,9 +76,9 @@ All code changes MUST pass the following gates before merge:
 
 ### Testing Protocol
 
-- Unit tests MUST be written before or alongside implementation
-- Integration tests MUST cover all user stories in the specification
-- Performance tests MUST validate compliance with Principle III metrics
+- Manual testing is the primary validation method for rapid development
+- Automated tests are OPTIONAL and can be added later as the project matures
+- Critical user flows SHOULD be manually verified before each release
 
 ## Governance
 
@@ -92,4 +89,4 @@ This constitution represents the non-negotiable standards for the Counter app pr
 - **Compliance**: All pull requests and code reviews MUST verify adherence to these principles
 - **Exceptions**: Any deviation MUST be documented in a Complexity Tracking table with justification
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-14 | **Last Amended**: 2026-01-14
+**Version**: 1.1.0 | **Ratified**: 2026-01-14 | **Last Amended**: 2026-01-14
