@@ -73,7 +73,7 @@ As a user, I want to see the current count displayed prominently on screen, so t
 
 ### Edge Cases
 
-- What happens when the user holds down a volume button continuously? The counter should increment/decrement repeatedly at a reasonable rate (debounce to prevent accidental rapid counting).
+- What happens when the user holds down a volume button continuously? The counter should increment/decrement repeatedly at 150ms intervals (~6 counts per second).
 - How does the system handle extremely large numbers? The counter should support at least 6-digit numbers (up to 999,999) without display issues.
 - What happens if the app is in the background? Volume buttons should control system volume normally; counter changes only occur when app is in foreground.
 - What happens on app restart? The counter should persist its last value between app sessions.
@@ -87,9 +87,9 @@ As a user, I want to see the current count displayed prominently on screen, so t
 - **FR-003**: System MUST reset the counter to 0 when both volume buttons are pressed simultaneously
 - **FR-004**: System MUST display the current counter value prominently on the main screen
 - **FR-005**: System MUST intercept volume button presses to prevent system volume changes while the app is in the foreground
-- **FR-006**: System MUST persist the counter value between app sessions (survives app close and restart)
+- **FR-006**: System MUST persist the counter value between app sessions using UserDefaults (survives app close and restart)
 - **FR-007**: System MUST support negative counter values
-- **FR-008**: System MUST debounce rapid button presses to prevent unintentional multiple counts (reasonable delay between registered presses)
+- **FR-008**: System MUST debounce rapid button presses with a 150ms delay between registered presses (allows ~6 counts per second)
 - **FR-009**: System MUST restore normal volume button behavior when the app moves to background
 
 ### Key Entities
@@ -107,8 +107,17 @@ As a user, I want to see the current count displayed prominently on screen, so t
 - **SC-005**: Users can complete a count of 100 items in under 2 minutes using volume buttons
 - **SC-006**: Reset action (both buttons) works successfully on first attempt 95% of the time
 
+## Clarifications
+
+### Session 2026-01-14
+
+- Q: What debounce timing should be used for volume button presses? → A: 150ms (fast - allows ~6 counts per second)
+- Q: Which persistence approach should be used for counter storage? → A: UserDefaults (simple key-value storage)
+- Q: Which UI framework should be used for building the app? → A: SwiftUI (modern declarative UI)
+
 ## Assumptions
 
+- The app is built using SwiftUI as the UI framework
 - The app runs on iOS 15.0 or later
 - The device has physical volume buttons (not applicable to iPod touch without buttons)
 - Users have basic familiarity with their iPhone's volume buttons
