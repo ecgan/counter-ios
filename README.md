@@ -106,4 +106,4 @@ The app intercepts hardware volume button presses using AVFoundation's audio ses
 
 ## License
 
-MIT
+GPL-3.0
