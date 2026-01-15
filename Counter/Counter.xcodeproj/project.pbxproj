@@ -24,6 +24,8 @@
 		2A0000020000000000000005 /* VolumeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeListener.swift; sourceTree = "<group>"; };
 		2A0000020000000000000006 /* VolumeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeEvent.swift; sourceTree = "<group>"; };
 		2A0000020000000000000007 /* Interfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interfaces.swift; sourceTree = "<group>"; };
+		2A0000020000000000000008 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		2A0000020000000000000009 /* Local.xcconfig.template */ = {isa = PBXFileReference; lastKnownFileType = text; path = Local.xcconfig.template; sourceTree = "<group>"; };
 		2A0000030000000000000001 /* Counter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Counter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,6 +56,7 @@
 				2A0000050000000000000004 /* Models */,
 				2A0000050000000000000005 /* Services */,
 				2A0000050000000000000006 /* Contracts */,
+				2A0000050000000000000007 /* Config */,
 				2A0000020000000000000003 /* Assets.xcassets */,
 			);
 			path = Counter;
@@ -90,6 +93,15 @@
 				2A0000020000000000000007 /* Interfaces.swift */,
 			);
 			path = Contracts;
+			sourceTree = "<group>";
+		};
+		2A0000050000000000000007 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2A0000020000000000000008 /* Shared.xcconfig */,
+				2A0000020000000000000009 /* Local.xcconfig.template */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,13 +306,13 @@
 		};
 		2A00000D0000000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A0000020000000000000008 /* Shared.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UCXV8FJ7BW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -324,13 +336,13 @@
 		};
 		2A00000D0000000000000002 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A0000020000000000000008 /* Shared.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UCXV8FJ7BW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

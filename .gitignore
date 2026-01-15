@@ -41,5 +41,8 @@ fastlane/test_output
 .env
 .env.*
 
+# Local development config
+**/Local.xcconfig
+
 # Archives
 *.xcarchive

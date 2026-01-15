@@ -1,0 +1,5 @@
+// Shared.xcconfig
+// Shared build settings for Counter app
+// Include Local.xcconfig for developer-specific settings (team ID)
+
+#include? "Local.xcconfig"
