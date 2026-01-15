@@ -2,7 +2,7 @@
 
 A simple iOS counter demo app that uses volume buttons for hands-free counting, built using [GitHub Spec Kit](https://github.com/github/spec-kit), a specification-driven development toolkit.
 
-![Counter App Screenshot](screenshot.png)
+<img src="screenshot.png" alt="Counter App Screenshot" width="300">
 
 ## Features
 
