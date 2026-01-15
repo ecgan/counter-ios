@@ -36,11 +36,11 @@ Counter/
 
 **Purpose**: Xcode project initialization and directory structure
 
-- [ ] T001 Create Xcode project "Counter" with SwiftUI template at Counter/
-- [ ] T002 Configure deployment target to iOS 15.0 in Counter.xcodeproj
-- [ ] T003 [P] Create Models/ subdirectory at Counter/Counter/Models/
-- [ ] T004 [P] Create Services/ subdirectory at Counter/Counter/Services/
-- [ ] T005 [P] Copy interface contracts from specs/001-init-spec-kit/contracts/interfaces.swift to Counter/Counter/Contracts/Interfaces.swift
+- [X] T001 Create Xcode project "Counter" with SwiftUI template at Counter/
+- [X] T002 Configure deployment target to iOS 15.0 in Counter.xcodeproj
+- [X] T003 [P] Create Models/ subdirectory at Counter/Counter/Models/
+- [X] T004 [P] Create Services/ subdirectory at Counter/Counter/Services/
+- [X] T005 [P] Copy interface contracts from specs/001-init-spec-kit/contracts/interfaces.swift to Counter/Counter/Contracts/Interfaces.swift
 
 ---
 
@@ -50,13 +50,13 @@ Counter/
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 Implement VolumeEvent struct and VolumeEventType enum in Counter/Counter/Models/VolumeEvent.swift per contracts/interfaces.swift
-- [ ] T007 Implement CounterState class conforming to CounterStateProtocol in Counter/Counter/Models/CounterState.swift per data-model.md
-- [ ] T008 Implement VolumeListener class conforming to VolumeListenerProtocol with AVAudioSession KVO in Counter/Counter/Services/VolumeListener.swift per research.md
-- [ ] T009 Add debounce logic (150ms) using Combine in Counter/Counter/Services/VolumeListener.swift per PerformanceContract
-- [ ] T010 Add simultaneous button detection (100ms window) in Counter/Counter/Services/VolumeListener.swift per research.md
-- [ ] T011 Configure AVAudioSession for volume interception in Counter/Counter/Services/VolumeListener.swift
-- [ ] T012 Wire VolumeListener events to CounterState actions in Counter/Counter/CounterApp.swift
+- [X] T006 Implement VolumeEvent struct and VolumeEventType enum in Counter/Counter/Models/VolumeEvent.swift per contracts/interfaces.swift
+- [X] T007 Implement CounterState class conforming to CounterStateProtocol in Counter/Counter/Models/CounterState.swift per data-model.md
+- [X] T008 Implement VolumeListener class conforming to VolumeListenerProtocol with AVAudioSession KVO in Counter/Counter/Services/VolumeListener.swift per research.md
+- [X] T009 Add debounce logic (150ms) using Combine in Counter/Counter/Services/VolumeListener.swift per PerformanceContract
+- [X] T010 Add simultaneous button detection (100ms window) in Counter/Counter/Services/VolumeListener.swift per research.md
+- [X] T011 Configure AVAudioSession for volume interception in Counter/Counter/Services/VolumeListener.swift
+- [X] T012 Wire VolumeListener events to CounterState actions in Counter/Counter/CounterApp.swift
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -72,11 +72,11 @@ Counter/
 
 ### Implementation for User Story 4
 
-- [ ] T013 [US4] Create main ContentView with large centered counter display in Counter/Counter/ContentView.swift
-- [ ] T014 [US4] Style counter text for readability from arm's length (large font, high contrast) in Counter/Counter/ContentView.swift
-- [ ] T015 [US4] Add VoiceOver accessibility labels per AccessibleCounterDisplay contract in Counter/Counter/ContentView.swift
-- [ ] T016 [US4] Connect ContentView to CounterState via @EnvironmentObject in Counter/Counter/ContentView.swift
-- [ ] T017 [US4] Inject CounterState as environment object in Counter/Counter/CounterApp.swift
+- [X] T013 [US4] Create main ContentView with large centered counter display in Counter/Counter/ContentView.swift
+- [X] T014 [US4] Style counter text for readability from arm's length (large font, high contrast) in Counter/Counter/ContentView.swift
+- [X] T015 [US4] Add VoiceOver accessibility labels per AccessibleCounterDisplay contract in Counter/Counter/ContentView.swift
+- [X] T016 [US4] Connect ContentView to CounterState via @EnvironmentObject in Counter/Counter/ContentView.swift
+- [X] T017 [US4] Inject CounterState as environment object in Counter/Counter/CounterApp.swift
 
 **Checkpoint**: User Story 4 complete - counter displays correctly and is accessible
 
@@ -90,9 +90,9 @@ Counter/
 
 ### Implementation for User Story 1
 
-- [ ] T018 [US1] Handle volumeUp events from VolumeListener to call CounterState.increment() in Counter/Counter/CounterApp.swift
-- [ ] T019 [US1] Verify system volume does not change when volume up is pressed (intercept working) in Counter/Counter/Services/VolumeListener.swift
-- [ ] T020 [US1] Add haptic feedback on increment (optional enhancement) in Counter/Counter/ContentView.swift
+- [X] T018 [US1] Handle volumeUp events from VolumeListener to call CounterState.increment() in Counter/Counter/CounterApp.swift
+- [X] T019 [US1] Verify system volume does not change when volume up is pressed (intercept working) in Counter/Counter/Services/VolumeListener.swift
+- [X] T020 [US1] Add haptic feedback on increment (optional enhancement) in Counter/Counter/ContentView.swift
 
 **Checkpoint**: User Story 1 complete - volume up increments counter without changing system volume
 
@@ -106,9 +106,9 @@ Counter/
 
 ### Implementation for User Story 2
 
-- [ ] T021 [US2] Handle volumeDown events from VolumeListener to call CounterState.decrement() in Counter/Counter/CounterApp.swift
-- [ ] T022 [US2] Verify negative numbers display correctly in Counter/Counter/ContentView.swift
-- [ ] T023 [US2] Verify system volume does not change when volume down is pressed in Counter/Counter/Services/VolumeListener.swift
+- [X] T021 [US2] Handle volumeDown events from VolumeListener to call CounterState.decrement() in Counter/Counter/CounterApp.swift
+- [X] T022 [US2] Verify negative numbers display correctly in Counter/Counter/ContentView.swift
+- [X] T023 [US2] Verify system volume does not change when volume down is pressed in Counter/Counter/Services/VolumeListener.swift
 
 **Checkpoint**: User Story 2 complete - volume down decrements counter, negative values supported
 
@@ -122,8 +122,8 @@ Counter/
 
 ### Implementation for User Story 3
 
-- [ ] T024 [US3] Handle reset events (simultaneous buttons) from VolumeListener to call CounterState.reset() in Counter/Counter/CounterApp.swift
-- [ ] T025 [US3] Add visual feedback for reset action (brief animation or color change) in Counter/Counter/ContentView.swift
+- [X] T024 [US3] Handle reset events (simultaneous buttons) from VolumeListener to call CounterState.reset() in Counter/Counter/CounterApp.swift
+- [X] T025 [US3] Add visual feedback for reset action (brief animation or color change) in Counter/Counter/ContentView.swift
 
 **Checkpoint**: User Story 3 complete - both buttons pressed resets counter to 0
 
@@ -133,11 +133,11 @@ Counter/
 
 **Purpose**: Improvements that affect multiple user stories and app quality
 
-- [ ] T026 [P] Add app lifecycle handling - start/stop VolumeListener on foreground/background in Counter/Counter/CounterApp.swift using scenePhase
-- [ ] T027 [P] Add on-screen +/- buttons as fallback UI for App Store compliance in Counter/Counter/ContentView.swift
-- [ ] T028 [P] Add on-screen reset button for accessibility in Counter/Counter/ContentView.swift
-- [ ] T029 [P] Configure app icon in Counter/Counter/Assets.xcassets/
-- [ ] T030 [P] Configure launch screen colors in Counter/Counter/Assets.xcassets/
+- [X] T026 [P] Add app lifecycle handling - start/stop VolumeListener on foreground/background in Counter/Counter/CounterApp.swift using scenePhase
+- [X] T027 [P] Add on-screen +/- buttons as fallback UI for App Store compliance in Counter/Counter/ContentView.swift
+- [X] T028 [P] Add on-screen reset button for accessibility in Counter/Counter/ContentView.swift
+- [X] T029 [P] Configure app icon in Counter/Counter/Assets.xcassets/
+- [X] T030 [P] Configure launch screen colors in Counter/Counter/Assets.xcassets/
 - [ ] T031 Run manual test checklist from quickstart.md on physical device
 - [ ] T032 Verify persistence - kill and relaunch app, confirm counter value persists
 - [ ] T033 Verify performance targets: <50ms response, <500ms startup per PerformanceContract
