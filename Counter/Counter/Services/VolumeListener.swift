@@ -23,11 +23,6 @@ final class VolumeListener: NSObject, ObservableObject, VolumeListenerProtocol {
     private var previousVolume: Float = 0.5
     private var volumeView: MPVolumeView?
 
-    // Simultaneous button detection
-    private var lastVolumeUpTime: Date?
-    private var lastVolumeDownTime: Date?
-    private let simultaneousThreshold: TimeInterval = TimeInterval(PerformanceContract.simultaneousThresholdMs) / 1000.0
-
     // Debounce timing
     private let debounceInterval: TimeInterval = TimeInterval(PerformanceContract.debounceIntervalMs) / 1000.0
     private var lastEventTime: Date?
@@ -142,41 +137,15 @@ final class VolumeListener: NSObject, ObservableObject, VolumeListenerProtocol {
         let now = Date()
         let volumeDelta = newVolume - previousVolume
 
-        // Determine event type based on volume direction
-        let eventType: VolumeEventType
-        if volumeDelta > 0 {
-            eventType = .volumeUp
-            lastVolumeUpTime = now
-        } else if volumeDelta < 0 {
-            eventType = .volumeDown
-            lastVolumeDownTime = now
-        } else {
-            return // No change
-        }
+        guard volumeDelta != 0 else { return }
 
-        // Check for simultaneous button press (reset)
-        if detectSimultaneousPress() {
-            let resetEvent = VolumeEvent(type: .reset, timestamp: now)
-            rawEventSubject.send(resetEvent)
-            // Clear simultaneous detection state
-            lastVolumeUpTime = nil
-            lastVolumeDownTime = nil
-        } else {
-            let event = VolumeEvent(type: eventType, timestamp: now)
-            rawEventSubject.send(event)
-        }
+        let eventType: VolumeEventType = volumeDelta > 0 ? .volumeUp : .volumeDown
+        let event = VolumeEvent(type: eventType, timestamp: now)
+        rawEventSubject.send(event)
 
         // Reset volume to middle to allow continuous detection
         resetVolumeToMiddle()
         previousVolume = 0.5
-    }
-
-    private func detectSimultaneousPress() -> Bool {
-        guard let upTime = lastVolumeUpTime,
-              let downTime = lastVolumeDownTime else {
-            return false
-        }
-        return abs(upTime.timeIntervalSince(downTime)) < simultaneousThreshold
     }
 
     private func resetVolumeToMiddle() {
