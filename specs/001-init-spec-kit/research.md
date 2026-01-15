@@ -41,34 +41,29 @@
 
 ---
 
-### 2. Simultaneous Button Detection
+### 2. Simultaneous Button Detection (DEPRECATED)
 
-**Decision**: Timing-based detection with 100ms window
+**Original Decision**: Timing-based detection with 100ms window
 
-**Rationale**:
-- KVO fires separate observations for each button
-- Track last event time for each button
-- If both events occur within 100ms, treat as simultaneous press
+**Status**: ❌ NOT FEASIBLE - Replaced with on-screen Reset button
 
-**Implementation Pattern**:
-```swift
-private var lastVolumeUpTime: Date?
-private var lastVolumeDownTime: Date?
-private let simultaneousThreshold: TimeInterval = 0.1 // 100ms
+**Why It Failed**:
+- iOS hardware cancels out simultaneous button presses (volume up + down = no net change)
+- The KVO observer receives zero or one notification, not two separate events
+- Timing-based detection only works if both events fire, which doesn't happen on real hardware
 
-func detectSimultaneousPress() -> Bool {
-    guard let upTime = lastVolumeUpTime,
-          let downTime = lastVolumeDownTime else { return false }
-    return abs(upTime.timeIntervalSince(downTime)) < simultaneousThreshold
-}
-```
+**Attempted Alternatives**:
 
-**Alternatives Considered**:
+| Alternative | Why Failed |
+|-------------|------------|
+| Timing-based detection (100ms window) | iOS hardware cancels simultaneous presses - events don't fire |
+| Long-press detection (hold for 2s) | KVO only fires on volume *change*, not button release - can't detect "holding" |
+| Quick succession detection (up then down) | Works but confusing UX, easy to accidentally trigger |
 
-| Alternative | Why Rejected |
-|-------------|--------------|
-| Native simultaneous detection | Not supported by iOS APIs |
-| Hardware-level detection | Requires private APIs, App Store rejection |
+**Final Solution**: On-screen Reset button
+- Reliable and accessible
+- No iOS hardware limitations
+- Clear user intent
 
 ---
 
@@ -142,7 +137,7 @@ init() {
 | Topic | Decision | Risk Level |
 |-------|----------|------------|
 | Volume Button Detection | AVAudioSession KVO observation | HIGH (App Store) |
-| Simultaneous Press | 100ms timing window | LOW |
+| Reset Method | On-screen button (volume-based not feasible) | LOW |
 | State Persistence | @Published + didSet pattern | LOW |
 | Debouncing | Combine debounce operator (150ms) | LOW |
 | UI Framework | SwiftUI with @StateObject | LOW |

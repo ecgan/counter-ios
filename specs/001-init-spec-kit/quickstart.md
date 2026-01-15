@@ -102,7 +102,7 @@ Per Constitution v1.1.0, manual testing is the primary validation method.
 | Launch app | Counter shows 0 |
 | Press volume up | Counter increases by 1 |
 | Press volume down | Counter decreases by 1 |
-| Press both buttons | Counter resets to 0 |
+| Tap Reset button | Counter resets to 0 |
 | Kill and relaunch app | Counter shows previous value |
 | Background app | Volume controls system volume |
 | Foreground app | Volume controls counter |

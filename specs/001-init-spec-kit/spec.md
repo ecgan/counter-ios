@@ -39,19 +39,21 @@ As a user, I want to press the physical volume down button to decrement the coun
 
 ---
 
-### User Story 3 - Reset Counter with Both Volume Buttons (Priority: P3)
+### User Story 3 - Reset Counter with On-Screen Button (Priority: P3)
 
-As a user, I want to press both volume buttons simultaneously to reset the counter to 0, so that I can quickly start a new count without navigating the interface.
+As a user, I want to tap an on-screen Reset button to reset the counter to 0, so that I can quickly start a new count.
 
-**Why this priority**: Reset functionality is important but less frequently used than increment/decrement. Users can alternatively restart the app to reset.
+**Why this priority**: Reset functionality is important but less frequently used than increment/decrement. An on-screen button provides reliable, accessible reset capability.
 
-**Independent Test**: Can be fully tested by pressing both volume buttons together and verifying the counter resets to 0. Provides convenient reset capability.
+**Design Decision**: Volume-based reset (pressing both buttons simultaneously) was not feasible due to iOS hardware limitations—simultaneous volume button presses cancel each other out at the hardware level, preventing reliable detection.
+
+**Independent Test**: Can be fully tested by tapping the on-screen Reset button and verifying the counter resets to 0. Provides reliable reset capability.
 
 **Acceptance Scenarios**:
 
-1. **Given** the app is open and the counter shows 50, **When** I press both volume up and volume down buttons simultaneously, **Then** the counter resets to 0
-2. **Given** the app is open and the counter shows -10, **When** I press both buttons simultaneously, **Then** the counter resets to 0
-3. **Given** I press both buttons, **When** the reset occurs, **Then** the system volume does not change
+1. **Given** the app is open and the counter shows 50, **When** I tap the Reset button, **Then** the counter resets to 0
+2. **Given** the app is open and the counter shows -10, **When** I tap the Reset button, **Then** the counter resets to 0
+3. **Given** I tap the Reset button, **When** the reset occurs, **Then** haptic feedback confirms the action
 
 ---
 
@@ -84,7 +86,7 @@ As a user, I want to see the current count displayed prominently on screen, so t
 
 - **FR-001**: System MUST increment the counter by 1 when the volume up button is pressed while the app is in the foreground
 - **FR-002**: System MUST decrement the counter by 1 when the volume down button is pressed while the app is in the foreground
-- **FR-003**: System MUST reset the counter to 0 when both volume buttons are pressed simultaneously
+- **FR-003**: System MUST reset the counter to 0 when the user taps the on-screen Reset button
 - **FR-004**: System MUST display the current counter value prominently on the main screen
 - **FR-005**: System MUST intercept volume button presses to prevent system volume changes while the app is in the foreground
 - **FR-006**: System MUST persist the counter value between app sessions using UserDefaults (survives app close and restart)
@@ -105,7 +107,7 @@ As a user, I want to see the current count displayed prominently on screen, so t
 - **SC-003**: Button press to counter update takes less than 100ms (feels instantaneous)
 - **SC-004**: Counter value persists correctly across 100% of app restarts
 - **SC-005**: Users can complete a count of 100 items in under 2 minutes using volume buttons
-- **SC-006**: Reset action (both buttons) works successfully on first attempt 95% of the time
+- **SC-006**: Reset action (on-screen button) works successfully on first attempt 100% of the time
 
 ## Clarifications
 

@@ -7,7 +7,7 @@
 
 ## Summary
 
-Build a native iOS counter app that uses physical volume buttons for hands-free increment/decrement operations. The app intercepts volume button presses while in foreground, displays a large readable counter, persists state via UserDefaults, and supports reset via simultaneous button press. Built with SwiftUI targeting iOS 15+.
+Build a native iOS counter app that uses physical volume buttons for hands-free increment/decrement operations. The app intercepts volume button presses while in foreground, displays a large readable counter, persists state via UserDefaults, and supports reset via on-screen button (volume-based reset was not feasible due to iOS hardware limitations). Built with SwiftUI targeting iOS 15+.
 
 ## Technical Context
 

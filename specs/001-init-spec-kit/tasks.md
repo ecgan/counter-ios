@@ -54,7 +54,7 @@ Counter/
 - [X] T007 Implement CounterState class conforming to CounterStateProtocol in Counter/Counter/Models/CounterState.swift per data-model.md
 - [X] T008 Implement VolumeListener class conforming to VolumeListenerProtocol with AVAudioSession KVO in Counter/Counter/Services/VolumeListener.swift per research.md
 - [X] T009 Add debounce logic (150ms) using Combine in Counter/Counter/Services/VolumeListener.swift per PerformanceContract
-- [X] T010 Add simultaneous button detection (100ms window) in Counter/Counter/Services/VolumeListener.swift per research.md
+- [X] ~~T010 Add simultaneous button detection (100ms window) in Counter/Counter/Services/VolumeListener.swift per research.md~~ (REMOVED: iOS hardware limitation prevents reliable detection)
 - [X] T011 Configure AVAudioSession for volume interception in Counter/Counter/Services/VolumeListener.swift
 - [X] T012 Wire VolumeListener events to CounterState actions in Counter/Counter/CounterApp.swift
 
@@ -114,18 +114,20 @@ Counter/
 
 ---
 
-## Phase 6: User Story 3 - Reset Counter with Both Volume Buttons (Priority: P3)
+## Phase 6: User Story 3 - Reset Counter with On-Screen Button (Priority: P3)
 
-**Goal**: Press both volume buttons simultaneously to reset the counter to 0 for quick restart
+**Goal**: Tap the on-screen Reset button to reset the counter to 0 for quick restart
 
-**Independent Test**: Press both volume buttons together on a physical device and verify the counter resets to 0
+**Independent Test**: Tap the Reset button on the app and verify the counter resets to 0
+
+**Design Decision**: Volume-based reset (pressing both buttons simultaneously) was not feasible due to iOS hardware limitations—simultaneous volume button presses cancel each other out at the hardware level, preventing reliable detection.
 
 ### Implementation for User Story 3
 
-- [X] T024 [US3] Handle reset events (simultaneous buttons) from VolumeListener to call CounterState.reset() in Counter/Counter/CounterApp.swift
+- [X] T024 [US3] Handle reset button tap to call CounterState.reset() in Counter/Counter/ContentView.swift
 - [X] T025 [US3] Add visual feedback for reset action (brief animation or color change) in Counter/Counter/ContentView.swift
 
-**Checkpoint**: User Story 3 complete - both buttons pressed resets counter to 0
+**Checkpoint**: User Story 3 complete - Reset button tap resets counter to 0
 
 ---
 
@@ -159,7 +161,7 @@ Counter/
 - **User Story 4 (P1)**: Display - Can start after Foundational (Phase 2) - Required before other stories
 - **User Story 1 (P1)**: Increment - Depends on US4 for visual feedback
 - **User Story 2 (P2)**: Decrement - Depends on US4 for visual feedback, can run parallel with US1
-- **User Story 3 (P3)**: Reset - Depends on US4 for visual feedback, can run parallel with US1/US2
+- **User Story 3 (P3)**: Reset (on-screen button) - Depends on US4 for visual feedback, can run parallel with US1/US2
 
 ### Within Each User Story
 
